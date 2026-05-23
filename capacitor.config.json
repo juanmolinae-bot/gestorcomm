@@ -1,0 +1,13 @@
+{
+  "appId": "cl.jmolina.gestorcomm",
+  "appName": "GestorComm",
+  "webDir": "www",
+  "server": {
+    "url": "https://gestorcomm.onrender.com",
+    "allowNavigation": ["*.onrender.com"],
+    "cleartext": false
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}

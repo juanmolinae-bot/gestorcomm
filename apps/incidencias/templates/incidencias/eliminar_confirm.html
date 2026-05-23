@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Eliminar incidencia{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body text-center p-4">
+                <i class="bi bi-exclamation-triangle text-warning" style="font-size: 3rem;"></i>
+                <h5 class="mt-3">¿Eliminar esta incidencia?</h5>
+                <p class="text-muted">"{{ incidencia.titulo }}"</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <a href="{% url 'detalle_incidencia' incidencia.pk %}" class="btn btn-outline-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

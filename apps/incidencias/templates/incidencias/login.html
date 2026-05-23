@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Iniciar sesión - GestorComm{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5 col-lg-4">
+        <div class="card mt-5 shadow-sm">
+            <div class="card-body p-4">
+                <h3 class="text-center mb-3">GestorComm</h3>
+                <p class="text-center text-muted small mb-4">Sistema de gestión de incidencias</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Usuario</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña</label>
+                        {{ form.password }}
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

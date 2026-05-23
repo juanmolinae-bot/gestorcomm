@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Incidencias{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Incidencias</h3>
+    <a href="{% url 'crear_incidencia' %}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Nueva</a>
+</div>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-4 col-6">
+        <select name="estado" class="form-select form-select-sm">
+            <option value="">Todos los estados</option>
+            <option value="abierta" {% if estado_filtro == 'abierta' %}selected{% endif %}>Abierta</option>
+            <option value="en_revision" {% if estado_filtro == 'en_revision' %}selected{% endif %}>En revisión</option>
+            <option value="resuelta" {% if estado_filtro == 'resuelta' %}selected{% endif %}>Resuelta</option>
+            <option value="cerrada" {% if estado_filtro == 'cerrada' %}selected{% endif %}>Cerrada</option>
+        </select>
+    </div>
+    <div class="col-md-4 col-6">
+        <select name="prioridad" class="form-select form-select-sm">
+            <option value="">Todas las prioridades</option>
+            <option value="baja" {% if prioridad_filtro == 'baja' %}selected{% endif %}>Baja</option>
+            <option value="media" {% if prioridad_filtro == 'media' %}selected{% endif %}>Media</option>
+            <option value="alta" {% if prioridad_filtro == 'alta' %}selected{% endif %}>Alta</option>
+            <option value="critica" {% if prioridad_filtro == 'critica' %}selected{% endif %}>Crítica</option>
+        </select>
+    </div>
+    <div class="col-md-2 col-12">
+        <button class="btn btn-outline-primary btn-sm w-100">Filtrar</button>
+    </div>
+</form>
+
+<div class="card shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Título</th>
+                    <th class="d-none d-md-table-cell">Zona</th>
+                    <th>Prioridad</th>
+                    <th>Estado</th>
+                    <th class="d-none d-md-table-cell">Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inc in incidencias %}
+                <tr style="cursor:pointer" onclick="window.location='{% url 'detalle_incidencia' inc.pk %}'">
+                    <td>{{ inc.titulo }}</td>
+                    <td class="d-none d-md-table-cell">{{ inc.zona }}</td>
+                    <td>{{ inc.get_prioridad_display }}</td>
+                    <td><span class="badge badge-estado-{{ inc.estado }}">{{ inc.get_estado_display }}</span></td>
+                    <td class="d-none d-md-table-cell">{{ inc.fecha_creacion|date:"d/m/Y" }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="5" class="text-center text-muted py-4">No hay incidencias</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

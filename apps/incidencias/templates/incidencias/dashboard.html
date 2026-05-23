@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - GestorComm{% endblock %}
+{% block content %}
+<h3 class="mb-4">Resumen</h3>
+<div class="row g-3 mb-4">
+    <div class="col-md-4 col-6">
+        <div class="card card-stat shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">Abiertas</h6>
+                <h2 class="mb-0 text-danger">{{ total_abiertas }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-6">
+        <div class="card card-stat shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">En revisión</h6>
+                <h2 class="mb-0 text-warning">{{ total_revision }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-12">
+        <div class="card card-stat shadow-sm">
+            <div class="card-body">
+                <h6 class="text-muted">Cerradas</h6>
+                <h2 class="mb-0 text-secondary">{{ total_cerradas }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h5>Incidencias recientes</h5>
+<div class="card shadow-sm">
+    <ul class="list-group list-group-flush">
+        {% for inc in incidencias_recientes %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <a href="{% url 'detalle_incidencia' inc.pk %}" class="text-decoration-none">{{ inc.titulo }}</a>
+                <small class="text-muted d-block">{{ inc.zona }} · {{ inc.fecha_creacion|date:"d/m H:i" }}</small>
+            </div>
+            <span class="badge badge-estado-{{ inc.estado }}">{{ inc.get_estado_display }}</span>
+        </li>
+        {% empty %}
+        <li class="list-group-item text-center text-muted">No hay incidencias registradas</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
