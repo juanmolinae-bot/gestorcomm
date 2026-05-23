@@ -1,15 +1,15 @@
 # GestorComm
 
-Sistema de gestión de incidencias para proyectos de construcción y comisionamiento.
+Sistema de gestión de incidencias para proyectos de construcción y comisionamiento eléctrico.
 
-Desarrollado con Django como parte del curso APTC106 – Universidad Andrés Bello.
+Desarrollado con Django como parte del curso APTC106 de la universidad Universidad Andrés Bello.
 
 ## Funcionalidades
 
-- Login / Logout con autenticación nativa de Django
-- Pantalla de perfil de usuario
-- CRUD completo de incidencias (crear, listar, ver detalle, editar, eliminar)
-- Filtros por estado y prioridad
+- Login / Logout con autenticación nativa de Django.
+- Pantalla de perfil de usuario.
+- CRUD completo de incidencias (crear, listar, ver detalle, editar, eliminar y modificar).
+- Filtros por estado y prioridad de las incidencias.
 - Panel de administración en /admin/
 - Interfaz responsive con Bootstrap 5
 
@@ -95,4 +95,4 @@ gestorcomm/
 
 ## Autor
 
-Juan Molina Escalante – APTC106 – Semana 11 – 2026
+Juan Molina Escalante 22-05-2026
